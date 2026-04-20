@@ -10,6 +10,8 @@ import { starOutline } from 'ionicons/icons';
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonButton, IonIcon, RouterLink],
 })
 export class HomePage {
+  studentId = 'G00353258';
+
   constructor() {
     addIcons({ starOutline });
   }
