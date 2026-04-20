@@ -1,13 +1,29 @@
 import { Routes } from '@angular/router';
+import { HomePage } from './home/home.page';
+import { MovieDetailsPage } from './movie-details/movie-details.page';
+import { DetailsPage } from './details/details.page';
+import { FavouritesPage } from './favourites/favourites.page';
 
 export const routes: Routes = [
   {
     path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    component: HomePage,
   },
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
+  },
+  {
+    path: 'movie-details/:id',
+    component: MovieDetailsPage,
+  },
+  {
+    path: 'details/:id',
+    component: DetailsPage,
+  },
+  {
+    path: 'favourites',
+    component: FavouritesPage,
   },
 ];
