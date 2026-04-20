@@ -141,5 +141,8 @@ vite.config.ts.timestamp-*
 # Angular cache
 .angular/
 
+# VSCode settings
+.vscode/
+
 # Project brief
 Project-Brief/
