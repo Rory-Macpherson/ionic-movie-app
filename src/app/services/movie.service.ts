@@ -39,7 +39,7 @@ export class MovieService {
   async searchMovies(query: string) {
     const options: HttpOptions = { url: `${this.baseUrl}/search/movie?query=${query}&api_key=${this.apiKey}` };
     const response = await CapacitorHttp.get(options);
-    return response.data;
+    return response.data.results;
   }
 
   async getMovieCredits(id: number) {

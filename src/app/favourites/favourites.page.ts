@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Favourites } from '../services/favourites';
 
 @Component({
   selector: 'app-favourites',
@@ -11,7 +12,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 })
 export class FavouritesPage implements OnInit {
 
-  constructor() { }
+   constructor(private favourites: Favourites) { }
 
   ngOnInit() {
   }
