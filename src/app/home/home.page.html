@@ -6,13 +6,36 @@
 
 <ion-content [fullscreen]="true">
 
+  <!--the ion item contains a search bar and a favourites button.-->
+    <!-- //this is an ionic input, the label is what the input is called and the place holder is what 
+    // is shown on the search bar before anything is typed -->
+     <!--this is a favourites button. it's using a router link to send it to favourites and it's got a title which means
+    when you hover over it, it says favourites. it's a star outline.-->
   <ion-item>
     <ion-input label="Enter movie keyword here" placeholder="keyword"></ion-input>
     <ion-button fill="clear" slot="end" title="Favourites" routerLink="/favourites">
       <ion-icon name="star-outline" slot="icon-only"></ion-icon>
     </ion-button>
   </ion-item>
-
+  
+<!--currently just a button that does nothing. i will link it to a method soon-->
   <ion-button>Search</ion-button>
+
+
+  <!--when the page is first loaded it should display the trending movies so let's do that first-->
+
+
+<ion-card *ngFor="let movie of movies">
+  <img alt="{{ movie.title }} poster" src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" />
+  <ion-card-header>
+    <ion-card-title>{{ movie.title }}</ion-card-title>
+    <ion-card-subtitle>{{ movie.release_date }}</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    {{ movie.overview }}
+  </ion-card-content>
+</ion-card>
+
 
 </ion-content>
