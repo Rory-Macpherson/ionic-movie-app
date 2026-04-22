@@ -15,11 +15,11 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'movie-details/:id',
+    path: 'movie-details',
     component: MovieDetailsPage,
   },
   {
-    path: 'details/:id',
+    path: 'details',
     component: DetailsPage,
   },
   {

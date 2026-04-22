@@ -5,19 +5,23 @@ import { addIcons } from 'ionicons';
 import { starOutline } from 'ionicons/icons';
 import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent } from '@ionic/angular/standalone';
 import { MovieService } from '../services/movie.service';
+import { DataService } from '../services/data';
 import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  imports: [FormsModule, NgFor, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonButton, IonIcon, RouterLink],
+  imports: [FormsModule, NgFor, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, 
+    IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonButton, IonIcon, RouterLink],
 })
 
 //export is needed so this class can be exported
 //there are some class fields that i use in my html and methods
 export class HomePage {
   studentId = 'G00353258';
+  movieID = 0;
   movies: any[] = [];
   searchQuery: string = '';
 
@@ -45,9 +49,14 @@ export class HomePage {
     this.movies = await this.ms.getTrending();
   }
 
+  async goToMovie(movie:any){
+    this.data.movieID = movie.id;
+    this.router.navigate(['movie-details']);
+  }
+
 
   //I needed to add the addIcons to the constructor so it would register the icon first
-  constructor(private ms: MovieService) {
+  constructor(private ms: MovieService, private data: DataService, private router: Router) {
     addIcons({ starOutline });
   }
 }

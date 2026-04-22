@@ -36,25 +36,40 @@ export class MovieService {
   //i have lots of methods that return exactly what i want. i found it harder to make this file but
   //easier to work with on the long run.
   //the method calls are much easier in my eyes
+
+  //i did not add results at the end of these and it took me a long time to figure out!
+
+  //this one returns movies based on the word that the user searched for
   async searchMovies(query: string) {
     const options: HttpOptions = { url: `${this.baseUrl}/search/movie?query=${query}&api_key=${this.apiKey}` };
     const response = await CapacitorHttp.get(options);
     return response.data.results;
   }
 
+  //this returns a single movie, i use this just to get the movie name
+  //maybe i am wrong but i dont think its on the cast page which is annoying!
+  async getMovie(id: number) {
+    const options: HttpOptions = { url: `${this.baseUrl}/movie/${id}?api_key=${this.apiKey}` };
+    return (await CapacitorHttp.get(options)).data;
+  }
+
+//this one returns the movie credits, the cast and the crew
   async getMovieCredits(id: number) {
     const options: HttpOptions = { url: `${this.baseUrl}/movie/${id}/credits?api_key=${this.apiKey}` };
     return (await CapacitorHttp.get(options)).data;
   }
 
+
+  //this one returns the persons details 
   async getPerson(id: number) {
     const options: HttpOptions = { url: `${this.baseUrl}/person/${id}?api_key=${this.apiKey}` };
-    return (await CapacitorHttp.get(options)).data;
+    return (await CapacitorHttp.get(options)).data.results;
   }
 
+
+  //this one returns movie credits from each actor.
   async getPersonMovieCredits(id: number) {
     const options: HttpOptions = { url: `${this.baseUrl}/person/${id}/movie_credits?api_key=${this.apiKey}` };
-    return (await CapacitorHttp.get(options)).data;
+    return (await CapacitorHttp.get(options)).data.results;
   }
-
 }

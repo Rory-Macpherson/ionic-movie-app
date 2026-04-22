@@ -1,13 +1,48 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>movie-details</ion-title>
+    <!--this is just showing the movie title. accessed from movie, which is a object
+    that has different properties, like title. so movie.title just 
+    shows you the title-->
+    <ion-title>{{ movie.title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">movie-details</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+
+
+<!--its the overview. same as title-->
+  <p>{{ movie.overview }}</p>
+
+  <!--a button that says change me. it will be a favouites button but not yet.
+  so
+  CHANGE MEEEEEE!!!!!!!-->
+  <ion-button>Change me</ion-button>
+
+
+  <!--ok the main point of this page is to have a for loop. well an ngfor loop but 
+  i call it a for loop. it grabs cast which is an array. it names 
+  all items in the array member. and then it shows the detials of each member.
+  also note that if there is no picture it prints no inmage! pretty slick-->
+  <h2>Cast</h2>
+  <ion-card *ngFor="let member of cast">
+    <img *ngIf="member.profile_path" src="https://image.tmdb.org/t/p/w500/{{ member.profile_path }}" alt="{{ member.name }}" />
+    <p *ngIf="!member.profile_path">No image</p>
+    <ion-card-header>
+      <ion-card-title>{{ member.name }}</ion-card-title>
+      <ion-card-subtitle>{{ member.character }}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+
+  <!--read cast notes, not doing it again-->
+  <h2>Crew</h2>
+  <ion-card *ngFor="let member of crew">
+    <img *ngIf="member.profile_path" src="https://image.tmdb.org/t/p/w500/{{ member.profile_path }}" alt="{{ member.name }}" />
+    <p *ngIf="!member.profile_path">No image</p>
+    <ion-card-header>
+      <ion-card-title>{{ member.name }}</ion-card-title>
+      <ion-card-subtitle>{{ member.job }}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
 </ion-content>

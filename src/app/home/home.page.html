@@ -18,7 +18,8 @@
     </ion-button>
   </ion-item>
   
-<!--currently just a button that does nothing. i will link it to a method soon-->
+<!--currently just a button that does nothing. i will link it to a method soon
+method was added. look at search on home.ts-->
   <ion-button (click) = "Search()">Search</ion-button>
 
 
@@ -36,7 +37,7 @@
   
 
 
-<ion-card *ngFor="let movie of movies">
+<ion-card *ngFor="let movie of movies" (click) = "goToMovie(movie)">
   <img alt="{{ movie.title }} poster" src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" />
   <ion-card-header>
     <ion-card-title>{{ movie.title }}</ion-card-title>
