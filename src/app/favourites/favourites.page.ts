@@ -14,7 +14,7 @@ export class FavouritesPage implements OnInit {
 
    constructor(private favourites: Favourites) { }
 
-  ngOnInit() {{{
+  ngOnInit() {
   }
 
 }

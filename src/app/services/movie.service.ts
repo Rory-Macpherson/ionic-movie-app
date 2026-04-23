@@ -60,16 +60,18 @@ export class MovieService {
   }
 
 
-  //this one returns the persons details 
-  async getPerson(id: number) {
+  //this one returns the persons details
+  //so it needs to be passed in an id, the rest is already hardcoded into the page
+  async getMember(id: number) {
     const options: HttpOptions = { url: `${this.baseUrl}/person/${id}?api_key=${this.apiKey}` };
-    return (await CapacitorHttp.get(options)).data.results;
+    return (await CapacitorHttp.get(options)).data;
   }
 
 
-  //this one returns movie credits from each actor.
-  async getPersonMovieCredits(id: number) {
+  //this one returns movie credits from each member. so its the same id i used for the one above but a different url
+  //yes it took me a long time to figure this out!
+  async getMemberMovieCredits(id: number) {
     const options: HttpOptions = { url: `${this.baseUrl}/person/${id}/movie_credits?api_key=${this.apiKey}` };
-    return (await CapacitorHttp.get(options)).data.results;
+    return (await CapacitorHttp.get(options)).data;
   }
 }
