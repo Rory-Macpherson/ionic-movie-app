@@ -1,6 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <!--moved button to here-->
     <ion-title>{{ studentId }} - Rory's Movies</ion-title>
+    <ion-button fill="clear" slot="end" title="Favourites" routerLink="/favourites">
+      <ion-icon name="heart-outline" slot="icon-only"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -10,12 +14,11 @@
     <!-- //this is an ionic input, the label is what the input is called and the place holder is what 
     // is shown on the search bar before anything is typed -->
      <!--this is a favourites button. it's using a router link to send it to favourites and it's got a title which means
-    when you hover over it, it says favourites. it's a star outline.-->
+    when you hover over it, it says favourites. it's a star outline.
+    
+    note--- i moved the button to the tool bar not the search bar!!!!-->
   <ion-item>
     <ion-input label="Enter movie keyword here" placeholder="keyword" [(ngModel)]="searchQuery" (keyup.enter)="Search()"></ion-input>
-    <ion-button fill="clear" slot="end" title="Favourites" routerLink="/favourites">
-      <ion-icon name="star-outline" slot="icon-only"></ion-icon>
-    </ion-button>
   </ion-item>
   
 <!--currently just a button that does nothing. i will link it to a method soon
@@ -44,7 +47,6 @@ method was added. look at search on home.ts-->
     <ion-card-title>{{ movie.title }}</ion-card-title>
     <ion-card-subtitle>{{ movie.release_date }}</ion-card-subtitle>
   </ion-card-header>
-
   <ion-card-content>
     {{ movie.overview }}
   </ion-card-content>

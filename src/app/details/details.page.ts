@@ -2,9 +2,11 @@ import { Component, ViewChild } from '@angular/core';
 import { CommonModule, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle,
-  IonList, IonItem, IonLabel, IonThumbnail
+  IonList, IonItem, IonLabel, IonThumbnail, IonButton, IonIcon
 } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { addIcons } from 'ionicons';
+import { homeOutline, heartOutline } from 'ionicons/icons';
 
 //importing both the services i need.
 import { DataService } from '../services/data';
@@ -15,7 +17,7 @@ import { MovieService } from '../services/movie.service';
   templateUrl: './details.page.html',
   standalone: true,
   //if you are importing things for your html then they go in this array
-  imports: [IonList, IonItem, IonLabel, IonThumbnail, IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, NgIf, CommonModule, FormsModule]
+  imports: [IonButton, IonIcon, IonList, IonItem, IonLabel, IonThumbnail, IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, NgIf, CommonModule, FormsModule, RouterLink]
 })
 export class DetailsPage {
   @ViewChild(IonContent) content!: IonContent;
@@ -28,7 +30,9 @@ export class DetailsPage {
   //first thiing we do is get the member id from the data service
   //changed that to on ionview as it was not updating because the constructor did not run
   //more than once
-  constructor(private data: DataService, private ms: MovieService, private router: Router) {}
+  constructor(private data: DataService, private ms: MovieService, private router: Router) {
+    addIcons({ homeOutline, heartOutline });
+  }
 
   //ionviewwillenter runs every time the page becomes active, not just the first time
   

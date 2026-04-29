@@ -2,8 +2,20 @@
   <ion-toolbar>
     <!--this is just showing the movie title. accessed from movie, which is a object
     that has different properties, like title. so movie.title just 
-    shows you the title-->
+    shows you the title
+    
+    i addded a fav utton here to link to the favourites
+    gotten from https://ionic.io/ionicons 
+    also home page added with a router to home page -->
+
+    
     <ion-title>{{ movie.title }}</ion-title>
+    <ion-button fill="clear" slot="end" routerLink="/home">
+  <ion-icon name="home-outline" slot="icon-only"></ion-icon>
+</ion-button>
+   <ion-button fill="clear" slot="end" title="Favourites" routerLink="/favourites">
+      <ion-icon name="heart-outline" slot="icon-only"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -15,8 +27,11 @@
 
   <!--a button that says change me. it will be a favouites button but not yet.
   so
-  CHANGE MEEEEEE!!!!!!!-->
-  <ion-button>Change me</ion-button>
+  CHANGE MEEEEEE!!!!!!!
+  note.. its been changed! uses a fancy ngif statemtn to see if the movie is in favourites!-->
+
+  <ion-button (click)="AddToFaves()" *ngIf="!isFave">Add to Favourites</ion-button>
+  <ion-button (click)="RemoveFromFaves()" *ngIf="isFave">Remove from Favourites</ion-button>
 
 
   <!--ok the main point of this page is to have a for loop. well an ngfor loop but 

@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonButton, IonIcon } from '@ionic/angular/standalone';
-import { RouterLink } from '@angular/router';
 import { addIcons } from 'ionicons';
-import { starOutline } from 'ionicons/icons';
+import { heartOutline, homeOutline } from 'ionicons/icons';
 import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent } from '@ionic/angular/standalone';
 import { MovieService } from '../services/movie.service';
 import { DataService } from '../services/data';
 import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -57,6 +56,6 @@ export class HomePage {
 
   //I needed to add the addIcons to the constructor so it would register the icon first
   constructor(private ms: MovieService, private data: DataService, private router: Router) {
-    addIcons({ starOutline });
+    addIcons({ heartOutline, homeOutline });
   }
 }
