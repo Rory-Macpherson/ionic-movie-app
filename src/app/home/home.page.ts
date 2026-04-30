@@ -23,6 +23,7 @@ export class HomePage {
   movieID = 0;
   movies: any[] = [];
   searchQuery: string = '';
+  title: string = "";
 
 
 
@@ -33,9 +34,11 @@ export class HomePage {
   async Search() {
     if (this.searchQuery.trim() === "") {
       this.movies = await this.ms.getTrending();
+      this.title = "Todays Trending Movies";
     }
     else {
       this.movies = await this.ms.searchMovies(this.searchQuery);
+      this.title = this.searchQuery + " Movies";
     }
   }
 
@@ -46,6 +49,7 @@ export class HomePage {
   //everytime you went back to the page not just the first enter
   async ngOnInit() {
     this.movies = await this.ms.getTrending();
+    this.title = "Todays Trending Movies";
   }
 
   async goToMovie(movie:any){

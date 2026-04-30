@@ -35,9 +35,11 @@ export class DetailsPage {
   }
 
   //ionviewwillenter runs every time the page becomes active, not just the first time
+  //added an if statmenmt that sends the user home if the page is going to load blank
   
   async ionViewWillEnter() {
     this.memberID = this.data.memberID;
+    if(this.memberID === 0){this.router.navigate(['/home'])}
     this.member = await this.ms.getMember(this.memberID);
     const credits = await this.ms.getMemberMovieCredits(this.memberID);
     this.castMovies = credits.cast;

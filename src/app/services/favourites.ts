@@ -46,7 +46,7 @@ export class Favourites {
   //from https://forum.ionicframework.com/t/get-all-values-from-ionic-storage/101842/10
   //its a method called getAll
   //it returns all the values from all the keys in the storage.
-  //pretty nifty
+  //pretty nifty and short
  async getAll() {
    return this.storage.keys()
   .then(keys => Promise.all(keys.map(k => this.storage.get(k))));

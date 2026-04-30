@@ -22,6 +22,10 @@ import { homeOutline, heartOutline } from 'ionicons/icons';
 //also added childview. this is a decorator that lets me grab an element from 
 //my html and control it with code. i use it to grab
 //ioncontent and scrol to top on page load!
+//took way longer than it should have to work it out, got from here
+//https://www.freakyjolly.com/ionic-how-to-scroll-to-top-bottom-using-ion-content-scroll-events/
+//And https://ionicframework.com/docs/api/content#scrolltotop
+
 //added a boolean which i will use in the html to see if
 //  the movie is a fave or not. pretty happpy with this
 export class MovieDetailsPage {
@@ -49,8 +53,10 @@ export class MovieDetailsPage {
   //ionviewwillenter runs every time the page becomes active, not just the first time
   //**** added scroll to the top because it was staying down the page when i nagivated back to it
   //also moved it to the end of the will enter so it does not scroll up on the wrong data!
+  //added an if statmenmt that sends the user home if the page is going to load blank
   async ionViewWillEnter() {
     this.movieID = this.data.movieID;
+    if(this.movieID === 0){this.router.navigate(['/home'])}
     this.movie = await this.ms.getMovie(this.movieID);
     const credits = await this.ms.getMovieCredits(this.movieID);
     this.cast = credits.cast;

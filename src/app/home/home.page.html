@@ -22,8 +22,12 @@
   </ion-item>
   
 <!--currently just a button that does nothing. i will link it to a method soon
-method was added. look at search on home.ts-->
-  <ion-button (click) = "Search()">Search</ion-button>
+method was added. look at search on home.ts
+
+added  expand="full" to make the button go the full screen-->
+  <ion-button expand="full" (click) = "Search()">Search</ion-button>
+
+  <ion-title>{{title}}</ion-title>
 
 
   <!--when the page is first loaded it should display the trending movies so let's do that first
@@ -42,7 +46,7 @@ method was added. look at search on home.ts-->
 
 
 <ion-card *ngFor="let movie of movies" (click) = "goToMovie(movie)">
-  <img alt="{{ movie.title }} poster" src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" />
+  <img style="width: 250px;" alt="{{ movie.title }} poster" src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" />
   <ion-card-header>
     <ion-card-title>{{ movie.title }}</ion-card-title>
     <ion-card-subtitle>{{ movie.release_date }}</ion-card-subtitle>

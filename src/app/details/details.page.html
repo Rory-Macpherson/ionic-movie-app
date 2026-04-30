@@ -1,7 +1,10 @@
+<!--THIS is the normal top of the page. we have the member name at the top and along side that
+are the two navigation buttons-->
+
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>{{member.name}}</ion-title>
-    <ion-button fill="clear" slot="end" routerLink="/home">
+    <ion-button fill="clear" slot="end" title="Home" routerLink="/home">
   <ion-icon name="home-outline" slot="icon-only"></ion-icon>
 </ion-button>
    <ion-button fill="clear" slot="end" title="Favourites" routerLink="/favourites">
@@ -11,18 +14,18 @@
 </ion-header>
 
 
-<!--this ngif is a little if statment. if memebr profile path exists show it
+<!--this ngif is a little if statment. if memebr profile path exists show it,
 if not ngif ! then show this. null = does not exist and that is what the moviedb sends back
 so its two dofferent if statments. the first if is if it exists
 the 2nd is if it does not exist. i will be adding these everwhere-->
 <ion-content [fullscreen]="true">
   <ion-card>
-    <img *ngIf="member.profile_path" src="https://image.tmdb.org/t/p/w500/{{ member.profile_path }}" alt="{{ member.name }}" />
+    <img style="width: 250px;" *ngIf="member.profile_path" src="https://image.tmdb.org/t/p/w500/{{ member.profile_path }}" alt="{{ member.name }}" />
     <p *ngIf="!member.profile_path">No image</p>
     <ion-card-header>
       <ion-card-title>{{ member.also_known_as }}</ion-card-title>
       <h2 *ngIf="member.deathday"  >{{member.birthday}} - {{member.deathday}}</h2>
-      <h2 *ngIf="!member.deathday" >{{member.birthday}}</h2>
+      <h2 *ngIf="!member.deathday && member.birthday" >{{member.birthday}}</h2>
       <ion-card-subtitle>{{ member.place_of_birth }}</ion-card-subtitle>
       <ion-card-subtitle>{{ member.biography }}</ion-card-subtitle>
     </ion-card-header>
@@ -30,14 +33,16 @@ the 2nd is if it does not exist. i will be adding these everwhere-->
 
 <!--thumnail slot end makes it go to the far right of the screen
 
-i had to add in two as ar first i only had one but then it missed some movies that people did,-->
+i had to add in two as ar first i only had one but then it missed some movies that people did
+so i have a list for all movies they acted in and then all movies they crewed in
+the same as having the cast and crew for each movie! pretty fancy -->
 
   <h2>Acting</h2>
   <ion-list>
     <ion-item *ngFor="let movie of castMovies" (click)="goToMovie(movie)">
       <ion-label>{{ movie.title }}</ion-label>
       <ion-thumbnail slot="end">
-        <img *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w92/{{ movie.poster_path }}" />
+        <img style="width: 250px;" *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w92/{{ movie.poster_path }}" />
         <p *ngIf="!movie.poster_path">No image</p>
       </ion-thumbnail>
     </ion-item>
@@ -48,7 +53,7 @@ i had to add in two as ar first i only had one but then it missed some movies th
     <ion-item *ngFor="let movie of crewMovies" (click)="goToMovie(movie)">
       <ion-label>{{ movie.title }}</ion-label>
       <ion-thumbnail slot="end">
-        <img *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w92/{{ movie.poster_path }}" />
+        <img style="width: 250px;" *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w92/{{ movie.poster_path }}" />
         <p *ngIf="!movie.poster_path">No image</p>
       </ion-thumbnail>
     </ion-item>
