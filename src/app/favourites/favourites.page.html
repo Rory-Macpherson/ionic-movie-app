@@ -26,7 +26,8 @@
     click the button to return home</ion-title>
   <ion-button routerLink="/home" *ngIf="faves.length === 0">Home</ion-button>
   <ion-card *ngFor="let movie of faves">
-  <img alt="{{ movie.title }} poster" src="https://image.tmdb.org/t/p/w300/{{ movie.poster_path }}" />
+  <img *ngIf="movie.poster_path" alt="{{ movie.title }} poster" src="https://image.tmdb.org/t/p/w300/{{ movie.poster_path }}" />
+  <p *ngIf="!movie.poster_path">No image</p>
   <ion-card-header>
     <ion-card-title>{{ movie.title }}</ion-card-title>
   </ion-card-header>

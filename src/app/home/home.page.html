@@ -64,7 +64,8 @@ added  expand="full" to make the button go the full screen-->
 
 <div *ngIf="tab === 'Movies'">
 <ion-card *ngFor="let movie of movies" (click) = "goToMovie(movie)">
-  <img alt="{{ movie.title }} poster" src="https://image.tmdb.org/t/p/w300/{{ movie.poster_path }}" />
+  <img *ngIf="movie.poster_path" alt="{{ movie.title }} poster" src="https://image.tmdb.org/t/p/w300/{{ movie.poster_path }}" />
+  <p *ngIf="!movie.poster_path">No image</p>
   <ion-card-header>
     <ion-card-title>{{ movie.title }}</ion-card-title>
     <ion-card-subtitle>{{ movie.release_date }}</ion-card-subtitle>
@@ -77,7 +78,8 @@ added  expand="full" to make the button go the full screen-->
 
 <div *ngIf="tab === 'People'">
  <ion-card *ngFor="let person of People" (click)="goToPerson(person)">
-    <img alt="{{ person.name }}" src="https://image.tmdb.org/t/p/w300/{{ person.profile_path }}" />
+    <img *ngIf="person.profile_path" alt="{{ person.name }}" src="https://image.tmdb.org/t/p/w300/{{ person.profile_path }}" />
+    <p *ngIf="!person.profile_path">No image</p>
     <ion-card-header>
       <ion-card-title>{{ person.name }}</ion-card-title>
     </ion-card-header>
