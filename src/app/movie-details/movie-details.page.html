@@ -40,7 +40,7 @@
   also note that if there is no picture it prints no inmage! pretty slick-->
   <h2>Cast</h2>
   <ion-card *ngFor="let member of cast" (click) = "goToMember(member)">
-    <img style="width: 250px;" *ngIf="member.profile_path" src="https://image.tmdb.org/t/p/w500/{{ member.profile_path }}" alt="{{ member.name }}" />
+    <img *ngIf="member.profile_path" src="https://image.tmdb.org/t/p/w300/{{ member.profile_path }}" alt="{{ member.name }}" />
     <p *ngIf="!member.profile_path">No image</p>
     <ion-card-header>
       <ion-card-title>{{ member.name }}</ion-card-title>
@@ -52,7 +52,7 @@
   <!--read cast notes, not doing it again-->
   <h2>Crew</h2>
   <ion-card *ngFor="let member of crew" (click) = "goToMember(member)">
-    <img style="width: 250px;" *ngIf="member.profile_path" src="https://image.tmdb.org/t/p/w500/{{ member.profile_path }}" alt="{{ member.name }}" />
+    <img *ngIf="member.profile_path" src="https://image.tmdb.org/t/p/w300/{{ member.profile_path }}" alt="{{ member.name }}" />
     <p *ngIf="!member.profile_path">No image</p>
     <ion-card-header>
       <ion-card-title>{{ member.name }}</ion-card-title>

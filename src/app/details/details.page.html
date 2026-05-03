@@ -20,7 +20,7 @@ so its two dofferent if statments. the first if is if it exists
 the 2nd is if it does not exist. i will be adding these everwhere-->
 <ion-content [fullscreen]="true">
   <ion-card>
-    <img style="width: 250px;" *ngIf="member.profile_path" src="https://image.tmdb.org/t/p/w500/{{ member.profile_path }}" alt="{{ member.name }}" />
+    <img *ngIf="member.profile_path" src="https://image.tmdb.org/t/p/w300/{{ member.profile_path }}" alt="{{ member.name }}" />
     <p *ngIf="!member.profile_path">No image</p>
     <ion-card-header>
       <ion-card-title>{{ member.also_known_as }}</ion-card-title>
@@ -42,7 +42,7 @@ the same as having the cast and crew for each movie! pretty fancy -->
     <ion-item *ngFor="let movie of castMovies" (click)="goToMovie(movie)">
       <ion-label>{{ movie.title }}</ion-label>
       <ion-thumbnail slot="end">
-        <img style="width: 250px;" *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w92/{{ movie.poster_path }}" />
+        <img *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w92/{{ movie.poster_path }}" />
         <p *ngIf="!movie.poster_path">No image</p>
       </ion-thumbnail>
     </ion-item>
@@ -53,7 +53,7 @@ the same as having the cast and crew for each movie! pretty fancy -->
     <ion-item *ngFor="let movie of crewMovies" (click)="goToMovie(movie)">
       <ion-label>{{ movie.title }}</ion-label>
       <ion-thumbnail slot="end">
-        <img style="width: 250px;" *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w92/{{ movie.poster_path }}" />
+        <img *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w92/{{ movie.poster_path }}" />
         <p *ngIf="!movie.poster_path">No image</p>
       </ion-thumbnail>
     </ion-item>

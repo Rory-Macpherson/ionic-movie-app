@@ -1,6 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <!--moved button to here-->
+     <!--this is a favourites button. it's using a router link to send it to favourites and it's got a title which means
+    when you hover over it, it says favourites. it's a star outline.-->
     <ion-title>{{ studentId }} - Rory's Movies</ion-title>
     <ion-button fill="clear" slot="end" title="Favourites" routerLink="/favourites">
       <ion-icon name="heart-outline" slot="icon-only"></ion-icon>
@@ -10,15 +12,31 @@
 
 <ion-content [fullscreen]="true">
 
-  <!--the ion item contains a search bar and a favourites button.-->
-    <!-- //this is an ionic input, the label is what the input is called and the place holder is what 
-    // is shown on the search bar before anything is typed -->
-     <!--this is a favourites button. it's using a router link to send it to favourites and it's got a title which means
-    when you hover over it, it says favourites. it's a star outline.
-    
-    note--- i moved the button to the tool bar not the search bar!!!!-->
+  
+    <!--this is a buttons tab, so you can chose between searching for movies or people 
+    it calls a method called ontabchange and it also is linked to the field called tab
+    so tab is updated depending on what is passed up from the buttons
+    i added passing a field ie test to the ontabchange method ass it was not updating the 
+    title properly. that seems to have fixed it-->
+
+    <ion-segment [(ngModel)]="tab" [value]="tab" (ionChange)="onTabChange($event)" >
+  <ion-segment-button value="Movies">
+    <ion-label>Movies</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="People">
+    <ion-label>People</ion-label>
+  </ion-segment-button>
+    </ion-segment>
+
+ <!--note--- 
+ the ion item contains a search bar and a favourites button.
+     //this is an ionic input, the label is what the input is called and the place holder is what 
+    // is shown on the search bar before anything is typed i moved the button to the tool bar not the search bar!!!!
+ the the ngmodel links this input with search query. so what ever is typed 
+ here is added to the search query on the home.ts page 
+ added a keyup so that when enter is pressed it also searches. sick!! -->
   <ion-item>
-    <ion-input label="Enter movie keyword here" placeholder="keyword" [(ngModel)]="searchQuery" (keyup.enter)="Search()"></ion-input>
+    <ion-input label="Enter keyword here" placeholder="keyword" [(ngModel)]="searchQuery" (keyup.enter)="Search()"></ion-input>
   </ion-item>
   
 <!--currently just a button that does nothing. i will link it to a method soon
@@ -44,9 +62,9 @@ added  expand="full" to make the button go the full screen-->
   -->
   
 
-
+<div *ngIf="tab === 'Movies'">
 <ion-card *ngFor="let movie of movies" (click) = "goToMovie(movie)">
-  <img style="width: 250px;" alt="{{ movie.title }} poster" src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" />
+  <img alt="{{ movie.title }} poster" src="https://image.tmdb.org/t/p/w300/{{ movie.poster_path }}" />
   <ion-card-header>
     <ion-card-title>{{ movie.title }}</ion-card-title>
     <ion-card-subtitle>{{ movie.release_date }}</ion-card-subtitle>
@@ -55,6 +73,15 @@ added  expand="full" to make the button go the full screen-->
     {{ movie.overview }}
   </ion-card-content>
 </ion-card>
+</div>
 
+<div *ngIf="tab === 'People'">
+ <ion-card *ngFor="let person of People" (click)="goToPerson(person)">
+    <img alt="{{ person.name }}" src="https://image.tmdb.org/t/p/w300/{{ person.profile_path }}" />
+    <ion-card-header>
+      <ion-card-title>{{ person.name }}</ion-card-title>
+    </ion-card-header>
+</ion-card>
+</div>
 
 </ion-content>

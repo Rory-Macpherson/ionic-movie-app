@@ -74,4 +74,18 @@ export class MovieService {
     const options: HttpOptions = { url: `${this.baseUrl}/person/${id}/movie_credits?api_key=${this.apiKey}` };
     return (await CapacitorHttp.get(options)).data;
   }
+//new method to search people
+   async searchPeople(query: string) {
+    const options: HttpOptions = { url: `${this.baseUrl}/search/person?query=${query}&api_key=${this.apiKey}` };
+    const response = await CapacitorHttp.get(options);
+    return response.data.results;
+  }
+
+  //so much stuff to add. this is a method to return trending people
+  //it is the same as return trending movies but returns trending peeople instead
+  //using the same url i just changed the url to person not people
+  async getTrendingPeople(){
+const options: HttpOptions = { url: "https://api.themoviedb.org/3/trending/person/day?api_key=" + this.apiKey};
+    return (await CapacitorHttp.get(options)).data.results;
+  }
 }
